@@ -21,3 +21,12 @@ poetry install
 ```bash
 poetry run python main.py --files file1.csv file2.csv --report average-rating
 ```
+
+### Проверить покрытие с помощью pytest
+```bash
+poetry run pytest --cov=reports
+```
+
+Примечание для ревьюера:
+
+Тесты не покрывают main.py ( сборка приложения ), cli_validator.py ( рассмотрены краевые случаи, а файлы всегда валидны ) и reader.py ( нет смысла проверять работу Python ). Посчитал, что для тестов reports/ на 100% будет достаточно.
