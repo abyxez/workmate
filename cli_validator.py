@@ -1,6 +1,3 @@
-import argparse
-from ast import AugLoad
-
 from reports.factory import REPORTS
 
 ALLOWED_ARGUMENTSS = {
