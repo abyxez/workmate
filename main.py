@@ -3,9 +3,9 @@ import sys
 
 from tabulate import tabulate
 
+from cli_validator import validate_args
 from reader import read_csv_files
 from reports.factory import get_average_rating
-from cli_validator import validate_args
 
 
 def parse_arguments(argv=None):

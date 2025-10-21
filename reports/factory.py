@@ -1,6 +1,5 @@
 from .average import AverageRating
 
-
 REPORTS = [
     "average-rating",
 ]
@@ -17,7 +16,7 @@ def get_average_rating(name: str):
     if name in REPORTS:
         if name == "average-rating":
             return AverageRating()
-        elif (
+        elif ( # pragma: no cover
             name == "average-price"
         ):  # Архитектура позволяет быстро добавлять новые отчёты
             ...
