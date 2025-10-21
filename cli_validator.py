@@ -37,7 +37,6 @@ def validate_args(arguments: list[str]) -> list[str]:
 
                 if name_of_file.lower().endswith(".csv"):
                     filtered.append(name_of_file)
-
                 else:
                     print(f"Ignoring non-CSV file: {name_of_file}")
                 count += 1
