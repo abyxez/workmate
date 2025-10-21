@@ -1,0 +1,24 @@
+[project]
+name = "csv-reader"
+version = "0.1.0"
+description = "Simple CSV reader, that takes any .csv files and outputs average-rating report."
+authors = [
+    {name = "Костя Макбуков",email = "agent-007-98@list.ru"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "coverage (==7.11.0)",
+    "iniconfig (==2.3.0)",
+    "isort (==7.0.0)",
+    "packaging (==25.0)",
+    "pluggy (==1.6.0)",
+    "pygments (==2.19.2)",
+    "pytest (==8.4.2)",
+    "pytest-cov (==7.0.0)",
+    "tabulate (==0.9.0)"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
