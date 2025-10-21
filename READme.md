@@ -8,7 +8,7 @@
 
 ### Клонируем репозиторий
 ```bash
-git clone https://github.com/yourusername/workmate.git
+git clone https://github.com/abyxez/workmate.git
 cd workmate
 ```
 
