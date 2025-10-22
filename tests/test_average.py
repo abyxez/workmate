@@ -1,3 +1,4 @@
+
 import csv
 import random
 import tempfile
@@ -5,7 +6,7 @@ import tempfile
 import pytest
 
 from reports.average import AverageRating
-from reports.base import Row
+from reports.base import BrandAverageRatingReport, Row
 
 
 def make_random_csv(num_rows: int, num_brands: int = 10) -> str:
@@ -93,3 +94,37 @@ def test_average_rating_manual():
     assert samsung.average_rating == round((4.8 + 4.1) / 2, 2)
 
     print(f"result: {result}")
+
+
+@pytest.fixture
+def reports_sample():
+    """Фикстура для проверки работы reports.average.AverageRating.display"""
+    return [
+        BrandAverageRatingReport(brand="apple", average_rating=4.65),
+        BrandAverageRatingReport(brand="samsung", average_rating=4.21)
+    ]
+
+
+def test_average_rating_display_with_reports(reports_sample, capsys):
+    """
+    Проверяет корректный вывод reports.average.AverageRating.display
+    с валидными данными
+    """
+    report_generator = AverageRating()
+    report_generator.display(reports_sample)
+    captured = capsys.readouterr()
+    assert "Brand" in captured.out
+    assert "Average rating" in captured.out
+
+
+def test_average_rating_display_no_reports(capsys):
+    """Проверяет, что display корректно обрабатывает пустой список или None"""
+    report_generator = AverageRating()
+
+    report_generator.display([])
+    captured = capsys.readouterr()
+    assert "No data to display" in captured.out
+
+    report_generator.display(None) # type: ignore
+    captured = capsys.readouterr()
+    assert "No data to display" in captured.out

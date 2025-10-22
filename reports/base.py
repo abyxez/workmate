@@ -21,7 +21,7 @@ class Row:
 
 
 @dataclass
-class Report:
+class BrandAverageRatingReport:
     brand: str
     average_rating: float
 
@@ -30,7 +30,7 @@ class BaseReport(ABC):
     @abstractmethod
     def generate(self, data: list) -> list:
         """
-        Основной метод отчета: принимает данные и возвращает их в форме, пригодной для отображения или сохранения.
+        Основной метод отчета: принимает данные и возвращает их в формате выбранного dataclass.
 
         Метод не реализован в базовом классе и должен быть переопределен в потомках.
         Конкретный тип входных и выходных данных определяется наследником.
@@ -39,3 +39,11 @@ class BaseReport(ABC):
         :return: список элементов отчета, структура которых зависит от конкретного потомка
         """
         pass  # pragma: no cover
+
+    @abstractmethod
+    def display(self, result: list) -> None:
+        """
+        Выводит результат generate() в консоль или иной формат.
+        Каждый потомок сам решает, в каком виде его выводить.
+        """
+        pass # pragma: no cover

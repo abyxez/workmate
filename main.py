@@ -1,8 +1,6 @@
 import argparse
 import sys
 
-from tabulate import tabulate
-
 from cli_validator import validate_args
 from reader import read_csv_files
 from reports.factory import get_average_rating
@@ -64,11 +62,12 @@ def main():
     validated_arguments = validate_args(raw_arguments)
     parsed_arguments = parse_arguments(validated_arguments)
 
-    csv_data = read_csv_files(parsed_arguments.files)
-    csv_report = get_average_rating(parsed_arguments.report)
-    table = csv_report.generate(csv_data)
+    data_from_csv_files = read_csv_files(parsed_arguments.files)
+    report_generator = get_average_rating(parsed_arguments.report)
 
-    print(tabulate(table, headers=["Brand", "Average Rating"], tablefmt="github"))
+    final_result = report_generator.generate(data_from_csv_files)
+
+    report_generator.display(final_result)
 
 
 if __name__ == "__main__":
