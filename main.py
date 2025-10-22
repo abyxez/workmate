@@ -6,7 +6,6 @@ from reader import read_csv_files
 from reports.average import AverageRating
 from reports.factory import get_average_rating
 
-
 REPORT_MAPPING = {
     "average-rating": AverageRating(),
 }
