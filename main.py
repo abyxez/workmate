@@ -3,7 +3,13 @@ import sys
 
 from cli_validator import validate_args
 from reader import read_csv_files
+from reports.average import AverageRating
 from reports.factory import get_average_rating
+
+
+REPORT_MAPPING = {
+    "average-rating": AverageRating(),
+}
 
 
 def parse_arguments(argv=None):
@@ -62,12 +68,13 @@ def main():
     validated_arguments = validate_args(raw_arguments)
     parsed_arguments = parse_arguments(validated_arguments)
 
+    report = REPORT_MAPPING[parsed_arguments.report]
+
     data_from_csv_files = read_csv_files(parsed_arguments.files)
-    report_generator = get_average_rating(parsed_arguments.report)
+    final_result = report.generate(data_from_csv_files)
 
-    final_result = report_generator.generate(data_from_csv_files)
+    report.display(final_result)
 
-    report_generator.display(final_result)
 
 
 if __name__ == "__main__":
